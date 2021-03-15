@@ -19,3 +19,5 @@ I added a few modules that I found the most useful to increase the vast majority
 - [middleclass](https://github.com/kikito/middleclass)
 - [registry](https://github.com/Tieske/registry/blob/master/src/registry.lua)
 - [semver](https://github.com/kikito/semver.lua)
+- [htmlparser](https://github.com/msva/lua-htmlparser)
+- [luaunit](https://github.com/bluebird75/luaunit)

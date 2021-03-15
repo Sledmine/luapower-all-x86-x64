@@ -309,6 +309,19 @@ glue.string = {}
 local function iterate_once(s, s1)
 	return s1 == nil and s or nil
 end
+
+--- Split a string list/array given a separator string
+function glue.string.split(s, sep)
+if (sep == nil or sep == '') then return 1 end
+local position, array = 0, {}
+for st, sp in function() return string.find(s, sep, position, true) end do
+	table.insert(array, string.sub(s, position, st-1))
+	position = sp + 1
+end
+table.insert(array, string.sub(s, position))
+return array
+end
+
 function glue.string.gsplit(s, sep, start, plain)
 	start = start or 1
 	plain = plain or false
