@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "${LUAJIT_PATH}"
 shopt -s nullglob
 
 describe() {
@@ -110,7 +111,7 @@ compile_c_module() {
 
 # usage: [ filename=file.lua ] f=file.lua|- o=file.o $0 CFLAGS... -> file.o
 compile_lua_module() {
-	./luajit -b -t raw -g $f $o.luac
+	./${LUAJIT_PATH} -b -t raw -g $f $o.luac
 	local sym=$filename
 	[ "$sym" ] || sym=$f
 	sym=${sym#bin/$P/lua/}       # bin/<platform>/lua/a.lua -> a.lua
@@ -122,7 +123,7 @@ compile_lua_module() {
 
 # usage: f=file.dasl o=file.o $0 CFLAGS... -> file.o
 compile_dasl_module() {
-	./luajit dynasm.lua $f | filename=$f f=- compile_lua_module "$@"
+	./${LUAJIT_PATH} dynasm.lua $f | filename=$f f=- compile_lua_module "$@"
 }
 
 # usage: f=file.* [name=file.*] o=file.o $0 CFLAGS... -> file.o
