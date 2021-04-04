@@ -21,3 +21,5 @@ I added a few modules that I found the most useful to increase the vast majority
 - [semver](https://github.com/kikito/semver.lua)
 - [htmlparser](https://github.com/msva/lua-htmlparser)
 - [luaunit](https://github.com/bluebird75/luaunit)
+- [lua-requests](https://github.com/JakobGreen/lua-requests)
+- [lua-pretty-json](https://github.com/Sledmine/lua-pretty-json)
