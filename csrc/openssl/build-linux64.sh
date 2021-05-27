@@ -12,3 +12,6 @@ cp -f libssl.so.1.1       $d/libssl.so
 cp -f libssl.a            $d/
 
 cp -f include/openssl/opensslconf.h ../include-linux64/openssl/opensslconf.h
+
+# Clean build
+make clean

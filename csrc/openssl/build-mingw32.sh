@@ -1,4 +1,4 @@
- cd src || exit 1
+cd src || exit 1
 
 # Remove previous compilation files
 make clean

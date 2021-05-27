@@ -4,4 +4,4 @@ P=mingw32 C="
     -I../openssl/include-mingw32
     config.c context.c ec.c ssl.c x509.c
     luasocket/buffer.c luasocket/io.c luasocket/timeout.c luasocket/wsocket.c
-" L="-s -static-libgcc -lws2_32 -llua51" D=ssl.dll A=ssl.a ./build.sh
+" L="-s -static-libgcc -lws2_32 -llua51" D=ssl.dll A=luasec.a ./build.sh
