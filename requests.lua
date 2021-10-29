@@ -109,6 +109,10 @@ function _requests.make_request(request)
     ok, response.status_code, response.headers, response.status =
         socket.request(full_request)
 
+    local status_code = response.status_code
+    if (type(status_code) == "table") then
+        response.status_code = table.concat(response.status_code, ", ")
+    end
     assert(ok, "error in " .. request.method .. " request: " .. response.status_code)
     response.text = table.concat(response_body)
     response.json = function()
