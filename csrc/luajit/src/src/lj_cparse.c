@@ -1407,7 +1407,16 @@ static CTypeID cp_decl_enum(CPState *cp, CPDecl *sdecl)
 {
   CTypeID eid = cp_struct_name(cp, sdecl, CTINFO(CT_ENUM, CTID_VOID));
   CTInfo einfo = CTINFO(CT_ENUM, CTALIGN(2) + CTID_UINT32);
-  CTSize esize = 4;  /* Only 32 bit enums are supported. */
+  CTSize esize = 4; /* Default enum size is 32 bits. */
+  /* Determine enum size, look for packed/unaligned enums. */
+  if (sdecl->attr & CTFP_PACKED) {
+    esize = 2;  /* Packed enums are always 16 bit. */
+    einfo = CTINFO(CT_ENUM, CTALIGN(2) + CTID_UINT16);
+  } else if (sdecl->attr & CTF_ALIGN) {
+    esize = 1u << ctype_align(sdecl->attr);
+    if (esize > 4) esize = 4;  /* Limit enum size to 32 bits. */
+    einfo = CTINFO(CT_ENUM, CTALIGN(esize) + CTID_UINT32);
+  }
   if (cp_opt(cp, '{')) {  /* Enum definition. */
     CPValue k;
     CTypeID lastid = eid;
